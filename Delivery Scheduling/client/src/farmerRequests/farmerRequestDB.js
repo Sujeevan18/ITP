@@ -134,16 +134,16 @@ export default function FarmerRequestDB() {
   };
 
   return (
-    <div className="container mt-3 bg-white">
-      <div className="d-flex justify-content-between align-items-center">
+    <div className="container mx-auto mt-3 bg-white p-4">
+      <div className="flex justify-between items-center">
         <h1 className="text-4xl font-bold text-center text-gray-800 mt-6 mb-4">Farmer Requests</h1>
         
         {/* Search Filter Dropdown */}
-        <div className="form-group mr-4">
-          <label htmlFor="date-range">Filter by Date Range:</label>
+        <div className="flex flex-col mr-4">
+          <label htmlFor="date-range" className="text-gray-700">Filter by Date Range:</label>
           <select
             id="date-range"
-            className="form-select"
+            className="border border-gray-300 p-2 rounded"
             value={selectedDateRange}
             onChange={handleSearchChange}
           >
@@ -158,69 +158,71 @@ export default function FarmerRequestDB() {
         </div>
 
         {/* Export PDF Button */}
-        <button onClick={exportPDF} className="btn btn-primary">
+        <button onClick={exportPDF} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
           Export PDF
         </button>
       </div>
 
-      <ul className="list-group mt-3">
+      <ul className="mt-3">
         {filterFarmerRequestsByDateRange().map((item) => (
           <li
-            className="list-group-item bg-info align-items-center d-flex justify-content-between my-2"
+            className="bg-blue-100 p-4 rounded-lg shadow-lg flex justify-between items-center mb-4"
             key={item._id}
           >
-            <div className="d-flex flex-column me-2">
+            <div>
               {editId === -1 || editId !== item._id ? (
                 <>
-                  <span className="fw-bold">{item.location}</span>
-                  <span>{item.date}</span>
-                  <span>{item.time}</span>
-                  <span>{item.selectedVehicle}</span>
+                  <p className="font-bold text-gray-700">{item.location}</p>
+                  <p className="text-gray-600">{item.date}</p>
+                  <p className="text-gray-600">{item.time}</p>
+                  <p className="text-gray-600">{item.selectedVehicle}</p>
                 </>
               ) : (
                 <div>
-                  <div className="form-group">
-                    <label htmlFor="pickup-location">Pickup Location</label>
+                  <div className="mb-2">
+                    <label htmlFor="pickup-location" className="block text-gray-700">Pickup Location</label>
                     <input
                       type="text"
                       id="pickup-location"
                       placeholder="Enter your location"
                       onChange={(e) => setEditLocation(e.target.value)}
                       value={editLocation}
+                      className="border border-gray-300 p-2 rounded w-full"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="pickup-date">PickUp Date</label>
+                  <div className="mb-2">
+                    <label htmlFor="pickup-date" className="block text-gray-700">PickUp Date</label>
                     <input
                       type="text"
                       id="pickup-date"
                       placeholder="PickUp Date"
                       onChange={(e) => setEditDate(e.target.value)}
                       value={editDate}
+                      className="border border-gray-300 p-2 rounded w-full"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="pickup-time">PickUp Time</label>
+                  <div className="mb-2">
+                    <label htmlFor="pickup-time" className="block text-gray-700">PickUp Time</label>
                     <input
                       type="text"
                       id="pickup-time"
                       placeholder="PickUp Time"
                       onChange={(e) => setEditTime(e.target.value)}
                       value={editTime}
+                      className="border border-gray-300 p-2 rounded w-full"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <h2>Vehicle Type</h2>
+                  <div className="mb-2">
+                    <label className="block text-gray-700">Vehicle Type</label>
                     <select
                       onChange={(e) => setEditSelectedVehicle(e.target.value)}
                       value={editSelectedVehicle}
+                      className="border border-gray-300 p-2 rounded w-full"
                     >
-                      <option value="" disabled>
-                        Select vehicle type
-                      </option>
+                      <option value="" disabled>Select vehicle type</option>
                       <option value="Farmer Vehicle">Farmer Vehicle</option>
                       <option value="Company Vehicle">Company Vehicle</option>
                     </select>
@@ -228,20 +230,22 @@ export default function FarmerRequestDB() {
                 </div>
               )}
             </div>
-            <div className="d-flex gap-2">
+            <div className="flex gap-2">
               {editId === -1 || editId !== item._id ? (
-                <button className="btn btn-warning" onClick={() => handleEdit(item)}>
+                <button className="bg-yellow-500 text-white py-1 px-4 rounded hover:bg-yellow-600" onClick={() => handleEdit(item)}>
                   Edit
                 </button>
               ) : (
-                <button className="btn btn-warning" onClick={handleUpdate}>Update</button>
+                <button className="bg-yellow-500 text-white py-1 px-4 rounded hover:bg-yellow-600" onClick={handleUpdate}>
+                  Update
+                </button>
               )}
               {editId === -1 ? (
-                <button className="btn btn-danger" onClick={() => handleDelete(item._id)}>
+                <button className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600" onClick={() => handleDelete(item._id)}>
                   Delete
                 </button>
               ) : (
-                <button className="btn btn-danger" onClick={handleEditCancel}>
+                <button className="bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600" onClick={handleEditCancel}>
                   Cancel
                 </button>
               )}

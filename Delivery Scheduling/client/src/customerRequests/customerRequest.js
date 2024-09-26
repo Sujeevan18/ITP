@@ -13,23 +13,54 @@ export default function CustomerRequest() {
   const navigate = useNavigate();
   const apiUrl = "http://localhost:8000/api";
 
+  const validateForm = () => {
+    // Ensure pickup location is filled and has at least 3 characters
+    if (pickupLocation.trim().length < 3) {
+      return "Pickup location must be at least 3 characters.";
+    }
+
+    // Ensure the date is in the future
+    const currentDate = new Date();
+    const selectedDate = new Date(pickupDate);
+    if (!pickupDate || selectedDate <= currentDate) {
+      return "Please select a valid future date.";
+    }
+
+    // Ensure time is selected
+    if (!pickupTime) {
+      return "Please select a valid time.";
+    }
+
+    // Ensure vehicle type is selected
+    if (!selectedVehicle) {
+      return "Please select a vehicle type.";
+    }
+
+    return null; // No errors, form is valid
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
 
-    if (pickupLocation.trim() !== "" && pickupDate.trim() !== "" && pickupTime.trim() !== "" && selectedVehicle.trim() !== "") {
-      fetch(apiUrl + "/customerRequest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          pickupLocation, 
-          pickupDate, 
-          pickupTime, 
-          selectedVehicle,
-        }),
-      })
+    const errorMessage = validateForm(); // Validate form before submission
+    if (errorMessage) {
+      setError(errorMessage);
+      return;
+    }
+
+    fetch(apiUrl + "/customerRequest", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pickupLocation, 
+        pickupDate, 
+        pickupTime, 
+        selectedVehicle,
+      }),
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP status ${res.status}`);
@@ -54,9 +85,6 @@ export default function CustomerRequest() {
         console.error("Error:", error);
         setError("Failed to create customer request. Please try again.");
       });
-    } else {
-      setError("All fields are required");
-    }
   };
 
   return (
