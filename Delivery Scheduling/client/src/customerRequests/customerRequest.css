@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .container {
+    width: 100vw;  /* Ensure full viewport width */
+    height: 100vh; /* Ensure full viewport height */
+    background-image: url('./customerRequest.jpg'); /* Replace with your image path */
+    background-size: cover; /* Scale the image to cover the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    position: absolute; /* Ensure it takes up the entire screen */
+    top: 0; 
+    left: 0;
+    display: flex; /* Flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: -1; /* Move background behind other content */
+}
+
+  
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    position: fixed; /* Fixed navbar */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure navbar is above other content */
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+  }
+  
+  .navbar-links a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+  }
+  
+  .menu-button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .form-container {
+    max-width: 400px; /* Set max-width to accommodate all form elements */
+    width: 90%; /* Allow the form to be responsive */
+    padding: 30px;
+    margin-top: 60px; /* Space below the navbar */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow */
+    backdrop-filter: blur(10px); /* Blur background for a better look */
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #333; /* Darker color for readability */
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* More space between form groups */
+  }
+
+  /* General Styling */
+select {
+  width: 200px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  padding: 5px;
+  font-size: 16px;
+  color: #333; /* Text color */
+  background-color: #f9f9f9; /* Background color */
+  border: 2px solid #ccc; /* Border styling */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition */
+  appearance: none; /* Remove default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Arrow Icon Styling */
+select::after {
+  content: '\25BC'; /* Downward arrow character */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Allow clicking through the arrow */
+}
+
+/* Hover State */
+select:hover {
+  border-color: #888; /* Change border color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow */
+}
+
+/* Focus State */
+select:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #0056b3; /* Focused border color */
+  box-shadow: 0 0 10px rgba(0, 86, 179, 0.5); /* Focused shadow */
+}
+
+/* Option Styling */
+option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Disabled Option Styling */
+option:disabled {
+  color: #aaa;
+}
+
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="time"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px; /* Larger font size for better UX */
+    box-sizing: border-box; /* Ensures padding and border are included in the total width */
+  }
+  
+  .submit-button {
+    padding: 12px 20px;
+    background-color: #4CAF50; /* Consistent with navbar color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .submit-button:hover {
+    background-color: #388E3C; /* Slightly different hover color */
+  }
+  
+  /* Responsive Design: Adjust for smaller screens */
+  @media (max-width: 600px) {
+    .navbar {
+        padding: 10px; /* Less padding on smaller screens */
+    }
+    
+    .form-container {
+        width: 95%; /* Almost full width */
+        margin-top: 80px; /* Increase margin for better spacing */
+        padding: 20px; /* Less padding */
+    }
+  
+    input[type="text"],
+    input[type="date"],
+    input[type="time"] {
+        font-size: 14px; /* Smaller font size */
+        padding: 10px; /* Adjust padding */
+    }
+  
+    .submit-button {
+        padding: 10px; /* Adjust padding */
+        font-size: 14px; /* Smaller button text */
+    }
+  }
+  
